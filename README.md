@@ -16,5 +16,4 @@ NJIT-Engineering-English
  - 报错 `selenium.common.exceptions.WebDriverException: Message: 'chromedriver' executable needs to be in PATH. Please see https://sites.google.com/a/chromium.org/chromedriver/home`，下载chromedriver到 目录下面即可。
  - 报错 `selenium.common.exceptions.SessionNotCreatedException: Message: session not created: This version of ChromeDriver only supports Chrome version 80`，chromedriver与chrome版本不对应,下载对应版本即可。
  - 密码正确，运行时提示密码错误，原因：没有使用校园网或者WeNet。
-
- <img src="https://github.com/jiiiiiiiiiin/NJIT-Engineering-English/blob/main/img/QRcode.JPG?raw=true" width="280px"/>
+ - `English.py`中将答案填入网页中的方式采用的js代码，并且`answer.py`能够很快的改成json格式，所以这个脚本可以很轻易的移植到`tampermonkey`中执行。
