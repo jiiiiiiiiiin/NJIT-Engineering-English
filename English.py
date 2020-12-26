@@ -194,4 +194,4 @@ class English():
                 print("ERROR！当前单元为空！")
         self.taskEnd()
         if self.shot:
-            self.taskScreenShot()# 有些顾客要求截图
+            self.taskScreenShot()# 截图
