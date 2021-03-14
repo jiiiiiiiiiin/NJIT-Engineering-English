@@ -4,16 +4,16 @@ from selenium.webdriver.chrome.options import Options
 import answer
 
 unit_url_tmp = [
-    "http://47.100.203.126:8081/StudentSTS/unitnav.aspx?BookId=30&UnitTreeid=4889",
-    "http://47.100.203.126:8081/StudentSTS/unitnav.aspx?BookId=30&UnitTreeid=4922",
-    "http://47.100.203.126:8081/StudentSTS/unitnav.aspx?BookId=30&UnitTreeid=4950",
-    "http://47.100.203.126:8081/StudentSTS/unitnav.aspx?BookId=30&UnitTreeid=4980",
-    "http://47.100.203.126:8081/StudentSTS/unitnav.aspx?BookId=30&UnitTreeid=5012",
-    "http://47.100.203.126:8081/StudentSTS/unitnav.aspx?BookId=30&UnitTreeid=5043",
-    "http://47.100.203.126:8081/StudentSTS/unitnav.aspx?BookId=30&UnitTreeid=5073",
-    "http://47.100.203.126:8081/StudentSTS/unitnav.aspx?BookId=30&UnitTreeid=5102",
-    "http://47.100.203.126:8081/StudentSTS/unitnav.aspx?BookId=30&UnitTreeid=5133",
-    "http://47.100.203.126:8081/StudentSTS/unitnav.aspx?BookId=30&UnitTreeid=5161",
+    "http://202.119.161.130/StudentSTS/unitnav.aspx?BookId=30&UnitTreeid=4889",
+    "http://202.119.161.130/StudentSTS/unitnav.aspx?BookId=30&UnitTreeid=4922",
+    "http://202.119.161.130/StudentSTS/unitnav.aspx?BookId=30&UnitTreeid=4950",
+    "http://202.119.161.130/StudentSTS/unitnav.aspx?BookId=30&UnitTreeid=4980",
+    "http://202.119.161.130/StudentSTS/unitnav.aspx?BookId=30&UnitTreeid=5012",
+    "http://202.119.161.130/StudentSTS/unitnav.aspx?BookId=30&UnitTreeid=5043",
+    "http://202.119.161.130/StudentSTS/unitnav.aspx?BookId=30&UnitTreeid=5073",
+    "http://202.119.161.130/StudentSTS/unitnav.aspx?BookId=30&UnitTreeid=5102",
+    "http://202.119.161.130/StudentSTS/unitnav.aspx?BookId=30&UnitTreeid=5133",
+    "http://202.119.161.130/StudentSTS/unitnav.aspx?BookId=30&UnitTreeid=5161",
 ]
 
 
@@ -36,7 +36,7 @@ class English():
         self.answer = answer.Answer_All()
         self.info=info
 
-        self.browser.get('http://47.100.203.126:8081/Common/index.aspx')
+        self.browser.get('http://202.119.161.130/Common/index.aspx')
         try:
             # 如果当前登陆的账号还在，退出账号
             self.browser.execute_script('document.getElementById("ctl00_lbtn_Quit").click()')
@@ -158,7 +158,7 @@ class English():
         self.browser.get(self.url_unit) # 跳转回 unit 选择页面
 
     def taskScreenShot(self):
-        self.browser.get("http://47.100.203.126:8081/StudentSTS/DetailRecord.aspx")
+        self.browser.get("http://202.119.161.130/StudentSTS/DetailRecord.aspx")
         self.browser.get_screenshot_as_file('img/{}.png'.format(self.username))
 
     def end(self):
