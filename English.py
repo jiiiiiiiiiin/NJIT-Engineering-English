@@ -14,19 +14,46 @@ unit_url_tmp = [
     "http://202.119.161.130/StudentSTS/unitnav.aspx?UnitTreeid=4749",
     "http://202.119.161.130/StudentSTS/unitnav.aspx?UnitTreeid=4770",
     "http://202.119.161.130/StudentSTS/unitnav.aspx?UnitTreeid=4797",
-
 ]
 
 
 class English():
-    def __init__(self, username, password, unit=None, auto=True, browser=None, shot=False, info=False):
+    def __init__(self, username, password, term, unit=None, auto=True, browser=None, shot=False, info=False):
+        if (term==1):
+            unit_url_tmp = [
+                "http://202.119.161.130/StudentSTS/unitnav.aspx?UnitTreeid=4612",
+                "http://202.119.161.130/StudentSTS/unitnav.aspx?UnitTreeid=4613",
+                "http://202.119.161.130/StudentSTS/unitnav.aspx?UnitTreeid=4614",
+                "http://202.119.161.130/StudentSTS/unitnav.aspx?UnitTreeid=4603",
+                "http://202.119.161.130/StudentSTS/unitnav.aspx?UnitTreeid=4573",
+                "http://202.119.161.130/StudentSTS/unitnav.aspx?UnitTreeid=4701",
+                "http://202.119.161.130/StudentSTS/unitnav.aspx?UnitTreeid=4727",
+                "http://202.119.161.130/StudentSTS/unitnav.aspx?UnitTreeid=4749",
+                "http://202.119.161.130/StudentSTS/unitnav.aspx?UnitTreeid=4770",
+                "http://202.119.161.130/StudentSTS/unitnav.aspx?UnitTreeid=4797",
+            ]#第一学期
+            self.answer = answer.Answer_Term1_All()
+        else:
+            unit_url_tmp = [
+                "http://202.119.161.130/StudentSTS/unitnav.aspx?BookId=30&UnitTreeid=4889",
+                "http://202.119.161.130/StudentSTS/unitnav.aspx?BookId=30&UnitTreeid=4922",
+                "http://202.119.161.130/StudentSTS/unitnav.aspx?BookId=30&UnitTreeid=4950",
+                "http://202.119.161.130/StudentSTS/unitnav.aspx?BookId=30&UnitTreeid=4980",
+                "http://202.119.161.130/StudentSTS/unitnav.aspx?BookId=30&UnitTreeid=5012",
+                "http://202.119.161.130/StudentSTS/unitnav.aspx?BookId=30&UnitTreeid=5043",
+                "http://202.119.161.130/StudentSTS/unitnav.aspx?BookId=30&UnitTreeid=5073",
+                "http://202.119.161.130/StudentSTS/unitnav.aspx?BookId=30&UnitTreeid=5102",
+                "http://202.119.161.130/StudentSTS/unitnav.aspx?BookId=30&UnitTreeid=5133",
+                "http://202.119.161.130/StudentSTS/unitnav.aspx?BookId=30&UnitTreeid=5161",
+            ]#第二学期
+            self.answer = answer.Answer_Term2_All()
         if not unit:
-            unit = [i+1 for i in range(10)]
+            unit = [i + 1 for i in range(10)]
 
         if not browser:
             chrome_options = Options()
             chrome_options.add_argument('--headless')
-            browser = webdriver.Chrome(chrome_options=chrome_options)
+            browser = webdriver.Chrome(options=chrome_options)
             pass
 
         self.shot = shot
@@ -34,8 +61,8 @@ class English():
         self.username = username
         self.password = password
         self.browser = browser
-        self.answer = answer.Answer_All()
-        self.info=info
+#        self.answer = answer.Answer_All()
+        self.info = info
 
         self.browser.get('http://202.119.161.130/Common/index.aspx')
         try:
@@ -44,8 +71,6 @@ class English():
         except:
             pass
 
-
-
         self.unit_all = [self.answer.unit_1, self.answer.unit_2, self.answer.unit_3,
                          self.answer.unit_4, self.answer.unit_5, self.answer.unit_6,
                          self.answer.unit_7, self.answer.unit_8, self.answer.unit_9, self.answer.unit_10]
@@ -53,21 +78,21 @@ class English():
             self.taskAuto()
             print('*' * 10 + '{} is over!'.format(self.username))
 
-
-
     def taskLogin(self):
-        js = "document.getElementById('ctl00_ContentPlaceHolder1_UcLogin1_txt_UserName').value='{username}';".format(username=self.username) + \
-             "document.getElementById('ctl00_ContentPlaceHolder1_UcLogin1_txt_PassWord').value='{password}';".format(password=self.password) + \
+        js = "document.getElementById('ctl00_ContentPlaceHolder1_UcLogin1_txt_UserName').value='{username}';".format(
+            username=self.username) + \
+             "document.getElementById('ctl00_ContentPlaceHolder1_UcLogin1_txt_PassWord').value='{password}';".format(
+                 password=self.password) + \
              "document.getElementById('ctl00_ContentPlaceHolder1_UcLogin1_ibtn_ok').click();"
         self.browser.execute_script(js)
-        self.browser.implicitly_wait(2) # 等待跳转
-        self.browser.find_element_by_xpath('//a[@style="color:blue;"]').click() # 进入课堂
-        self.browser.implicitly_wait(2) # 等待跳转 进入到单元选择页面
-        self.url_unit = self.browser.current_url # 记录 unit页面的URL
+        self.browser.implicitly_wait(2)  # 等待跳转
+        self.browser.find_element_by_xpath('//a[@style="color:blue;"]').click()  # 进入课堂
+        self.browser.implicitly_wait(2)  # 等待跳转 进入到单元选择页面
+        self.url_unit = self.browser.current_url  # 记录 unit页面的URL
 
     def taskEntryUnit(self, unit):
-        self.browser.get(unit_url_tmp[unit-1])
-        self.browser.implicitly_wait(2) # 等待跳转到 task 页面
+        self.browser.get(unit_url_tmp[unit - 1])
+        self.browser.implicitly_wait(2)  # 等待跳转到 task 页面
 
     def taskFillWord(self, unit, taskName, url, answer):
         self.browser.get(url)
@@ -156,14 +181,14 @@ class English():
             print('Unit {} {} is finished!'.format(unit, taskName))
 
     def taskEnd(self):
-        self.browser.get(self.url_unit) # 跳转回 unit 选择页面
+        self.browser.get(self.url_unit)  # 跳转回 unit 选择页面
 
     def taskScreenShot(self):
         self.browser.get("http://202.119.161.130/StudentSTS/DetailRecord.aspx")
         self.browser.get_screenshot_as_file('img/{}.png'.format(self.username))
 
     def end(self):
-        self.browser.close() # 关闭浏览器
+        self.browser.close()  # 关闭浏览器
 
     def dis(self, num, data):
         self.taskEntryUnit(num)  # 进入相对应的单元
@@ -182,16 +207,16 @@ class English():
 
     def taskAuto(self):
         try:
-            self.taskLogin() # 登陆
+            self.taskLogin()  # 登陆
         except:
             print("{} 密码错误".format(self.username))
             return None
         for i in self.unit:
-            if self.unit_all[i-1]:
-                self.dis(i, self.unit_all[i-1])
+            if self.unit_all[i - 1]:
+                self.dis(i, self.unit_all[i - 1])
                 print("unit{} over".format(i))
             else:
                 print("ERROR！当前单元为空！")
         self.taskEnd()
         if self.shot:
-            self.taskScreenShot()# 截图
+            self.taskScreenShot()  # 截图
